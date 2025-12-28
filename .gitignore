@@ -1,0 +1,15 @@
+# Segurança: Ignora arquivos de chaves e variáveis de ambiente
+.env
+.env.local
+*.env
+
+# Supabase: Ignora arquivos locais do CLI e segredos de funções
+supabase/.temp/
+supabase/functions/.env
+
+# Sistema e lixo: Ignora arquivos desnecessários do computador e editores
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+.idea/

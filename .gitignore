@@ -1,15 +1,24 @@
-# Segurança: Ignora arquivos de chaves e variáveis de ambiente
-.env
-.env.local
-*.env
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Supabase: Ignora arquivos locais do CLI e segredos de funções
-supabase/.temp/
-supabase/functions/.env
+node_modules
+dist
+dist-ssr
+*.local
 
-# Sistema e lixo: Ignora arquivos desnecessários do computador e editores
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
-node_modules/
-.vscode/
-.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

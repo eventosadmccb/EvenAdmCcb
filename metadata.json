@@ -1,5 +1,0 @@
-{
-  "name": "AgendaCCB",
-  "description": "Um aplicativo de lista de tarefas simples e moderno construído como um Progressive Web App (PWA) usando Vanilla JavaScript e Tailwind CSS. Funciona offline e pode ser instalado no seu dispositivo.",
-  "requestFramePermissions": []
-}

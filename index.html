@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu PWA de Eventos</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#1e3a8a">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Lógica de tema Dark/Light
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300 font-sans overflow-hidden">
+    
+    <div id="notification-banner-container" class="fixed top-0 left-0 right-0 z-[60]"></div>
+
+    <div id="auth-overlay" class="fixed inset-0 z-50 bg-slate-100 dark:bg-slate-900 flex items-center justify-center hidden">
+        <div id="auth-render" class="w-full max-w-md p-6">
+            </div>
+    </div>
+
+    <div id="menu-lateral-container" class="hidden"></div>
+
+    <div id="main-layout" class="flex flex-col h-screen hidden">
+        
+        <header id="main-header" class="bg-blue-900 dark:bg-sky-950 text-white shadow-md z-30 flex-shrink-0">
+            <div class="container mx-auto max-w-5xl px-4">
+                <nav class="flex justify-between items-center py-3">
+                    <button id="btn-menu" class="relative p-2 rounded-full hover:bg-white/10">
+                        <i class="fas fa-bars fa-lg"></i>
+                        <div class="badge-notificacao"></div>
+                    </button>
+                    <h1 class="text-lg font-bold uppercase tracking-wider">EVENTOS ADM VALENTE</h1>
+                    <button id="btn-home" class="p-2 rounded-full hover:bg-white/10">
+                        <i class="fas fa-home fa-lg"></i>
+                    </button>
+                </nav>
+            </div>
+
+            <div id="header-action-bar" class="bg-blue-900 dark:bg-sky-950 py-2 border-t border-white/10">
+                <div class="container mx-auto max-w-5xl px-4 flex justify-around items-center text-xs">
+                    <button id="btn-agenda" class="flex flex-col items-center hover:bg-white/10 p-2 rounded-lg w-1/4">
+                        <i class="fas fa-calendar-alt fa-lg mb-1"></i>
+                        <span>Agenda</span>
+                    </button>
+                    <button id="btn-todos" class="flex flex-col items-center hover:bg-white/10 p-2 rounded-lg w-1/4">
+                        <i class="fas fa-list-ul fa-lg mb-1"></i>
+                        <span>Todos</span>
+                    </button>
+                    <button id="btn-mais" class="flex flex-col items-center hover:bg-white/10 p-2 rounded-lg w-1/4">
+                        <i class="fas fa-plus-circle fa-lg mb-1"></i>
+                        <span>... Mais</span>
+                    </button>
+                    <button id="btn-pdf" class="flex flex-col items-center hover:bg-white/10 p-2 rounded-lg w-1/4">
+                        <i class="fas fa-file-export fa-lg mb-1"></i>
+                        <span>Exportar</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-grow overflow-y-auto">
+            <div class="container mx-auto max-w-5xl px-4 py-6">
+                
+                <section id="search-filter-bar" class="mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="relative flex-grow">
+                            <i class="fas fa-search text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+                            <input type="search" id="search-input" placeholder="Pesq. evento, sigla, local ou atend" 
+                                   class="w-full bg-white dark:bg-slate-800 py-3 pl-12 pr-4 rounded-full shadow-sm border-2 border-transparent focus:border-blue-900 focus:ring-0">
+                        </div>
+                        <button id="btn-multi-filter" class="flex-shrink-0 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 h-12 w-12 flex items-center justify-center rounded-full shadow-sm">
+                            <i class="fas fa-sliders-h fa-lg"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <section id="filter-status-display" class="mb-4 flex justify-between items-center text-sm">
+                    <span id="active-filter-label" class="font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 px-3 py-1 rounded-full">Filtro: Nenhum</span>
+                    <span id="record-count-label" class="font-medium text-slate-500 dark:text-slate-400">Registros: 0</span>
+                </section>
+
+                <main id="app-render" class="min-h-[60vh]">
+                    </main>
+            </div>
+        </div>
+
+        <button id="fab-add" class="fixed bottom-6 right-6 bg-orange-500 hover:bg-orange-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg z-30 transition-transform active:scale-95">
+            <i class="fas fa-plus fa-2x"></i>
+        </button>
+    </div>
+
+    <div id="modal-container" class="hidden"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="components.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
